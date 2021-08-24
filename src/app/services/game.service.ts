@@ -25,4 +25,12 @@ export class GameService {
   public getAllTimeWinners(): Observable<AllTimeWinner> {
     return this.client.get<AllTimeWinner>(environment.backend + '/api/game/all-time-winners');
   }
+
+  public startNewGame(): Observable<GameTable> {
+    return this.client.post<GameTable>(environment.backend + '/api/game/reset', {"command": "reset"});
+  }
+
+  public getActualWinner(): Observable<string> {
+    return this.client.get<string>(environment.backend + '/api/game/winner');
+  }
 }
