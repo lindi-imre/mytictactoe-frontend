@@ -54,7 +54,8 @@ export class BoardComponent implements OnInit {
         })
       }
       else if (result.gameStatus === 'DUE') {
-        this.showDueMessage();
+        this.fetchAllTimeWinners();
+        this.showDrawMessage();
       }
     },error => {
       // I don't know why, but error.error works
@@ -62,17 +63,17 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  showWinner(winner: string) {
+  private showWinner(winner: string) {
     this.winner = winner;
 
     alert("And the winner is: " + winner);
   }
 
-  showDueMessage() {
-    alert("Due! Let's start a new game!");
+  private showDrawMessage() {
+    alert("Draw! Let's start a new game!");
   }
 
-  fetchAllTimeWinners() {
+  private fetchAllTimeWinners() {
     this.gameService.getAllTimeWinners().subscribe(response => {
       this.xWins = response.xWinnersCounter;
       this.oWins = response.oWinnersCounter;
