@@ -13,6 +13,7 @@ export class BoardComponent implements OnInit {
   xIsNext: boolean | undefined;
   xWins : number | undefined;
   oWins : number | undefined;
+  draws: number | undefined;
   actualGameStatus: string | undefined;
   winner: string | undefined;
   constructor(private gameService: GameService) { }
@@ -75,6 +76,7 @@ export class BoardComponent implements OnInit {
     this.gameService.getAllTimeWinners().subscribe(response => {
       this.xWins = response.xWinnersCounter;
       this.oWins = response.oWinnersCounter;
+      this.draws = response.drawsCounter;
     });
   }
 
