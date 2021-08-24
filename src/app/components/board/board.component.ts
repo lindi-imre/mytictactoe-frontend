@@ -20,9 +20,9 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.gameService.getGameTable().subscribe(gameTable => {
       this.squares = gameTable.fields;
+      this.actualGameStatus = gameTable.gameStatus;
     })
     this.fetchAllTimeWinners();
-    this.actualGameStatus = 'PLAYING';
   }
 
   newGame() {
